@@ -2,7 +2,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { MapContainer, TileLayer, CircleMarker, Popup } from "react-leaflet";
 import L from "leaflet";
-
+import ChatBox from "../Chat/ChatBox.jsx";
 import { BASEMAPS } from "../../config/layers.js";
 import HexLayer from "./HexLayer.jsx";
 import {
@@ -20,8 +20,7 @@ L.Icon.Default.mergeOptions({
   iconRetinaUrl:
     "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png",
   iconUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png",
-  shadowUrl:
-    "https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png",
+  shadowUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png",
 });
 
 function Chip({ active, onClick, children }) {
@@ -98,9 +97,7 @@ export default function MapView() {
         }}
       >
         <div style={{ marginBottom: 8 }}>
-          <span style={{ fontWeight: 700, marginRight: 8 }}>
-            Choropleth:
-          </span>
+          <span style={{ fontWeight: 700, marginRight: 8 }}>Choropleth:</span>
           <Chip active={theme === "heat"} onClick={() => setTheme("heat")}>
             heat
           </Chip>
@@ -243,6 +240,16 @@ export default function MapView() {
           )}
         </Popup>
       )}
+
+      <ChatBox
+        onMarkers={(markers) => {
+          console.log("ChatBox markers:", markers);
+          // Later: decide to show them as clinics/parks
+          setParks([]);
+          setClinics([]);
+          // Example: if question was about clinics you can setClinics(markers)
+        }}
+      />
     </MapContainer>
   );
 }
