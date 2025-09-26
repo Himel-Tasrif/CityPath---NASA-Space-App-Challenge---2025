@@ -3,7 +3,7 @@ from pathlib import Path
 import pandas as pd
 import numpy as np
 
-DATA_PATH = Path(__file__).resolve().parents[1] / "data" / "hex_features.parquet"
+DATA_PATH = Path(__file__).resolve().parents[1] / "data" / "hex_features_ext.parquet"
 
 class HexStore:
     """Small cache/wrapper around the hex_features.parquet."""
