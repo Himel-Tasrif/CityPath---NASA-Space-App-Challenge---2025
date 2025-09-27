@@ -1,12 +1,174 @@
-/* src/App.css */
-html, body, #root {
-  height: 100%;
+/* Base reset and smooth fonts */
+:root {
+  --bg: #0b1220;
+}
+* { box-sizing: border-box; }
+html, body, #root { height: 100%; }
+body {
   margin: 0;
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+  color: #0f172a;
+  background: #f8fafc;
 }
 
-#root {
-  /* let the map take the whole screen */
-  width: 100%;
+/* Role Gate (Landing) */
+.role-gate {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+  background: radial-gradient(1200px 600px at 20% 10%, rgba(14,165,233,.12), transparent 60%),
+              radial-gradient(1000px 500px at 80% 90%, rgba(139,92,246,.12), transparent 60%),
+              #0b1220;
+  animation: gateFadeIn .7s ease both;
+  z-index: 9999;
+}
+.role-gate--closing {
+  animation: gateFadeOut .7s ease forwards;
 }
 
-/* (Optional) anything else you had can be removed for now */
+@keyframes gateFadeIn {
+  from { opacity: 0; transform: scale(1.02); }
+  to   { opacity: 1; transform: scale(1); }
+}
+@keyframes gateFadeOut {
+  to { opacity: 0; transform: scale(1.02) translateY(-6px); filter: blur(2px); }
+}
+
+.gate-bg .blob {
+  position: absolute;
+  filter: blur(48px);
+  border-radius: 9999px;
+  opacity: .35;
+  animation: float 10s ease-in-out infinite;
+}
+.blob--1 { width: 520px; height: 520px; background: #3b82f6; top: -120px; left: -120px; animation-delay: 0s; }
+.blob--2 { width: 440px; height: 440px; background: #10b981; bottom: -100px; right: -80px; animation-delay: .8s; }
+.blob--3 { width: 360px; height: 360px; background: #8b5cf6; top: 30%; right: 10%; animation-delay: .4s; }
+@keyframes float {
+  0%, 100% { transform: translateY(0) translateX(0) scale(1); }
+  50% { transform: translateY(-12px) translateX(8px) scale(1.04); }
+}
+.gate-bg .grain {
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' opacity='0.06' width='100%25' height='100%25'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.55' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  mix-blend-mode: overlay;
+  pointer-events: none;
+}
+
+.gate-content {
+  position: relative;
+  z-index: 1;
+  width: min(960px, 92vw);
+  color: #e5e7eb;
+  text-align: center;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 12px;
+  border-radius: 14px;
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.12);
+  margin-bottom: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,.25) inset, 0 6px 20px rgba(0,0,0,.2);
+  backdrop-filter: blur(10px);
+}
+.brand-mark {
+  font-size: 20px;
+}
+.brand-text h1 {
+  font-size: 18px;
+  margin: 0;
+  letter-spacing: .4px;
+  color: #fff;
+}
+.brand-text p {
+  font-size: 12px;
+  margin: 0;
+  opacity: .8;
+}
+
+.gate-title {
+  margin: 8px 0 8px;
+  font-size: clamp(28px, 4vw, 40px);
+  color: #fff;
+  letter-spacing: .3px;
+}
+.gate-subtitle {
+  margin: 0 auto 28px;
+  max-width: 700px;
+  color: #cbd5e1;
+}
+
+.role-cards {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  max-width: 820px;
+  margin: 0 auto;
+}
+@media (min-width: 700px) {
+  .role-cards { grid-template-columns: 1fr 1fr; }
+}
+
+.role-card {
+  text-align: left;
+  padding: 18px 18px;
+  border-radius: 16px;
+  background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.04));
+  border: 1px solid rgba(255,255,255,.16);
+  color: #e5e7eb;
+  cursor: pointer;
+  display: grid;
+  grid-template-columns: 48px 1fr auto;
+  gap: 14px;
+  align-items: center;
+  transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+  box-shadow: 0 12px 36px rgba(0,0,0,.25);
+  backdrop-filter: blur(10px);
+}
+.role-card:hover {
+  transform: translateY(-2px);
+  background: linear-gradient(180deg, rgba(255,255,255,.12), rgba(255,255,255,.06));
+  box-shadow: 0 16px 48px rgba(0,0,0,.35);
+}
+.role-card--accent {
+  background: linear-gradient(180deg, rgba(16,185,129,.18), rgba(5,150,105,.12));
+  border-color: rgba(16,185,129,.25);
+}
+.role-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  font-size: 20px;
+  font-weight: 700;
+}
+.role-info h3 {
+  margin: 0 0 4px;
+  color: #fff;
+}
+.role-info p {
+  margin: 0;
+  color: #d1d5db;
+  font-size: 14px;
+}
+.role-cta {
+  color: #a5b4fc;
+  font-weight: 700;
+  letter-spacing: .3px;
+}
+
+.footer-note {
+  margin-top: 24px;
+  font-size: 12px;
+  color: #93c5fd;
+  opacity: .9;
+  text-shadow: 0 1px 0 rgba(0,0,0,.3);
+}
