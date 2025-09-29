@@ -186,6 +186,7 @@ export default function MapView({ role = "local-leader" }) {
             background: rgba(255, 255, 255, 0.95); border: 1px solid rgba(255, 255, 255, 0.2);
             padding: 20px 24px; border-radius: 16px; box-shadow: 0 8px 32px rgba(0,0,0,0.12);
             font-family: system-ui, -apple-system, sans-serif; min-width: 320px;
+            transform: translateX(50px);
           }
           .role-badge {
             display: inline-flex; align-items: center; gap: 8px; padding: 6px 10px; border-radius: 999px;
@@ -270,18 +271,6 @@ export default function MapView({ role = "local-leader" }) {
       <MapContainer center={center} zoom={11} style={{ height: "100%", width: "100%" }} whenCreated={setMap}>
         {/* Control panel */}
         <div className="control-panel">
-          {/* <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 12 }}>
-            <div className={`role-badge ${isLocalLeader ? "role-badge--leader" : ""}`}>
-              <span style={{ fontSize: 14 }}>{isLocalLeader ? "🏛️" : "🏙️"}</span>
-              {isLocalLeader ? "Local Leader Mode" : "Urban Planner Mode"}
-            </div>
-            <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
-              <Chip active={theme === "heat"} onClick={() => setTheme("heat")} color="#ef4444">🔥 Heat</Chip>
-              <Chip active={theme === "greenspace"} onClick={() => setTheme("greenspace")} color="#22c55e">🌳 Green</Chip>
-              <Chip active={theme === "population"} onClick={() => setTheme("population")} color="#3b82f6">👥 Pop</Chip>
-            </div>
-          </div> */}
-
           <div className="legend">
             <div className="legend-item">
               <div className="legend-dot" style={{ background: "#ef4444" }}></div>
@@ -510,7 +499,7 @@ export default function MapView({ role = "local-leader" }) {
           </Popup>
         )}
 
-        <ChatBox onMarkers={handleAIMarkers} />
+        {!isLocalLeader && <ChatBox onMarkers={handleAIMarkers} />}
       </MapContainer>
     </>
   );

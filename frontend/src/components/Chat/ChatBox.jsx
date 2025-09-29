@@ -40,7 +40,7 @@ export default function ChatBox({ onMarkers }) {
 
     const time = new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
     const markerType = detectMarkerType(q);
-    
+
     setConversation((prev) => [...prev, { type: "user", content: q, time }]);
     setQuestion("");
     setAnswer("");
@@ -97,10 +97,31 @@ export default function ChatBox({ onMarkers }) {
 
   const quickPrompts = [
     "Where should we add more parks?",
-    "Find optimal clinic locations", 
+    "Find optimal clinic locations",
     "Show areas with high heat stress",
     "Suggest green infrastructure",
   ];
+
+  // Prevent map scroll when scrolling chat
+  const handleWheel = (e) => {
+    const el = bodyRef.current;
+    if (!el) return;
+
+    const { scrollTop, scrollHeight, clientHeight } = el;
+    const isAtTop = scrollTop === 0;
+    const isAtBottom = Math.ceil(scrollTop + clientHeight) >= scrollHeight;
+
+    // Only allow scrolling the map when at top or bottom and user keeps scrolling that way
+    if (!((e.deltaY < 0 && isAtTop) || (e.deltaY > 0 && isAtBottom))) {
+      e.stopPropagation();
+      e.preventDefault();
+    }
+  };
+
+  // For touch devices: always stop propagation
+  const handleTouchMove = (e) => {
+    e.stopPropagation();
+  };
 
   return (
     <>
@@ -128,16 +149,13 @@ export default function ChatBox({ onMarkers }) {
             min-width: 340px;
             transform: translateZ(0);
           }
-          
           .chatbox--expanded {
             height: 580px;
           }
-          
           .chatbox--collapsed {
             height: auto;
             max-height: 220px;
           }
-          
           .chatbox__header {
             padding: 24px 28px 20px;
             background: linear-gradient(135deg, 
@@ -153,7 +171,6 @@ export default function ChatBox({ onMarkers }) {
             border-radius: 24px 24px 0 0;
             position: relative;
           }
-          
           .chatbox__header::before {
             content: '';
             position: absolute;
@@ -164,19 +181,16 @@ export default function ChatBox({ onMarkers }) {
             background: linear-gradient(135deg, transparent 0%, rgba(255,255,255,0.1) 100%);
             pointer-events: none;
           }
-          
           @keyframes gradientShift {
             0%, 100% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
           }
-          
           .chatbox__title {
             display: flex;
             align-items: center;
             gap: 16px;
             position: relative;
           }
-          
           .chatbox__avatar {
             width: 40px;
             height: 40px;
@@ -189,32 +203,27 @@ export default function ChatBox({ onMarkers }) {
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.3);
           }
-          
           .chatbox__meta {
             display: flex;
             flex-direction: column;
             gap: 2px;
           }
-          
           .chatbox__name {
             font-weight: 700;
             font-size: 17px;
             line-height: 1.2;
             letter-spacing: -0.01em;
           }
-          
           .chatbox__status {
             font-size: 13px;
             opacity: 0.85;
             line-height: 1.2;
             font-weight: 500;
           }
-          
           .chatbox__actions {
             display: flex;
             gap: 12px;
           }
-          
           .btn {
             border: none;
             border-radius: 12px;
@@ -228,7 +237,6 @@ export default function ChatBox({ onMarkers }) {
             position: relative;
             overflow: hidden;
           }
-          
           .btn::before {
             content: '';
             position: absolute;
@@ -240,11 +248,9 @@ export default function ChatBox({ onMarkers }) {
             transform: translateX(-100%);
             transition: transform 0.3s ease;
           }
-          
           .btn:hover::before {
             transform: translateX(0);
           }
-          
           .btn--ghost {
             background: rgba(255, 255, 255, 0.2);
             color: white;
@@ -253,13 +259,11 @@ export default function ChatBox({ onMarkers }) {
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.3);
           }
-          
           .btn--ghost:hover {
             background: rgba(255, 255, 255, 0.3);
             transform: translateY(-2px);
             box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
           }
-          
           .btn--primary {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
@@ -268,22 +272,18 @@ export default function ChatBox({ onMarkers }) {
             border-radius: 16px;
             box-shadow: 0 4px 16px rgba(102, 126, 234, 0.3);
           }
-          
           .btn--primary:hover:not(:disabled) {
             transform: translateY(-2px);
             box-shadow: 0 8px 24px rgba(102, 126, 234, 0.4);
           }
-          
           .btn--primary:active {
             transform: translateY(0);
           }
-          
           .btn--primary:disabled {
             opacity: 0.7;
             cursor: not-allowed;
             transform: none;
           }
-          
           .chatbox__body {
             flex: 1;
             overflow-y: auto;
@@ -293,42 +293,34 @@ export default function ChatBox({ onMarkers }) {
               rgba(248, 250, 252, 0.8) 0%,
               rgba(255, 255, 255, 0.9) 100%);
           }
-          
           .chatbox__body::-webkit-scrollbar {
             width: 6px;
           }
-          
           .chatbox__body::-webkit-scrollbar-track {
             background: rgba(0, 0, 0, 0.05);
             border-radius: 3px;
           }
-          
           .chatbox__body::-webkit-scrollbar-thumb {
             background: rgba(102, 126, 234, 0.3);
             border-radius: 3px;
           }
-          
           .chatbox__body::-webkit-scrollbar-thumb:hover {
             background: rgba(102, 126, 234, 0.5);
           }
-          
           .chatbox__empty {
             text-align: center;
             color: #6b7280;
             padding: 32px 0;
           }
-          
           .chatbox__emptyIcon {
             font-size: 56px;
             margin-bottom: 20px;
             animation: float 3s ease-in-out infinite;
           }
-          
           @keyframes float {
             0%, 100% { transform: translateY(0px); }
             50% { transform: translateY(-8px); }
           }
-          
           .chatbox__emptyTitle {
             font-weight: 700;
             font-size: 20px;
@@ -336,7 +328,6 @@ export default function ChatBox({ onMarkers }) {
             color: #1f2937;
             letter-spacing: -0.02em;
           }
-          
           .chatbox__emptySub {
             font-size: 15px;
             margin-bottom: 28px;
@@ -346,14 +337,12 @@ export default function ChatBox({ onMarkers }) {
             margin-left: auto;
             margin-right: auto;
           }
-          
           .chatbox__chips {
             display: flex;
             flex-wrap: wrap;
             gap: 12px;
             justify-content: center;
           }
-          
           .chatbox__compact {
             padding: 20px 24px;
             border-bottom: 1px solid rgba(0, 0, 0, 0.06);
@@ -361,7 +350,6 @@ export default function ChatBox({ onMarkers }) {
               rgba(248, 250, 252, 0.8) 0%,
               rgba(255, 255, 255, 0.9) 100%);
           }
-          
           .chatbox__hint {
             font-size: 13px;
             color: #6b7280;
@@ -370,7 +358,6 @@ export default function ChatBox({ onMarkers }) {
             text-transform: uppercase;
             letter-spacing: 0.05em;
           }
-          
           .chip {
             background: linear-gradient(135deg, 
               rgba(102, 126, 234, 0.08) 0%, 
@@ -386,7 +373,6 @@ export default function ChatBox({ onMarkers }) {
             position: relative;
             overflow: hidden;
           }
-          
           .chip::before {
             content: '';
             position: absolute;
@@ -400,17 +386,14 @@ export default function ChatBox({ onMarkers }) {
             opacity: 0;
             transition: opacity 0.3s ease;
           }
-          
           .chip:hover::before {
             opacity: 1;
           }
-          
           .chip:hover {
             border-color: rgba(102, 126, 234, 0.3);
             transform: translateY(-2px);
             box-shadow: 0 4px 16px rgba(102, 126, 234, 0.15);
           }
-          
           .msg {
             display: flex;
             gap: 16px;
@@ -418,7 +401,6 @@ export default function ChatBox({ onMarkers }) {
             align-items: flex-start;
             animation: messageSlide 0.4s ease-out;
           }
-          
           @keyframes messageSlide {
             from {
               opacity: 0;
@@ -429,11 +411,9 @@ export default function ChatBox({ onMarkers }) {
               transform: translateY(0);
             }
           }
-          
           .msg--user {
             flex-direction: row-reverse;
           }
-          
           .msg__avatar {
             width: 36px;
             height: 36px;
@@ -446,24 +426,19 @@ export default function ChatBox({ onMarkers }) {
             flex-shrink: 0;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
           }
-          
           .msg--user .msg__avatar {
             background: linear-gradient(135deg, #10b981 0%, #059669 100%);
           }
-          
           .msg--ai .msg__avatar {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
           }
-          
           .msg--error .msg__avatar {
             background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
           }
-          
           .msg__content {
             flex: 1;
             max-width: 85%;
           }
-          
           .msg__bubble {
             padding: 16px 20px;
             border-radius: 20px;
@@ -473,13 +448,11 @@ export default function ChatBox({ onMarkers }) {
             position: relative;
             box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
           }
-          
           .msg--user .msg__bubble {
             background: linear-gradient(135deg, #10b981 0%, #059669 100%);
             color: white;
             border-radius: 20px 20px 6px 20px;
           }
-          
           .msg--ai .msg__bubble {
             background: rgba(255, 255, 255, 0.9);
             color: #374151;
@@ -487,19 +460,16 @@ export default function ChatBox({ onMarkers }) {
             border: 2px solid rgba(102, 126, 234, 0.1);
             backdrop-filter: blur(10px);
           }
-          
           .msg--error .msg__bubble {
             background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
             color: white;
             border-radius: 20px 20px 20px 6px;
           }
-          
           .msg__toolbar {
             margin-top: 12px;
             display: flex;
             gap: 10px;
           }
-          
           .btn--tiny {
             padding: 6px 12px;
             font-size: 12px;
@@ -509,12 +479,10 @@ export default function ChatBox({ onMarkers }) {
             border-radius: 10px;
             font-weight: 600;
           }
-          
           .btn--tiny:hover {
             background: rgba(102, 126, 234, 0.2);
             transform: translateY(-1px);
           }
-          
           .msg__meta {
             margin-top: 8px;
             font-size: 12px;
@@ -524,11 +492,9 @@ export default function ChatBox({ onMarkers }) {
             gap: 12px;
             font-weight: 500;
           }
-          
           .msg--user .msg__meta {
             justify-content: flex-end;
           }
-          
           .chatbox__footer {
             padding: 24px;
             border-top: 1px solid rgba(0, 0, 0, 0.06);
@@ -537,13 +503,11 @@ export default function ChatBox({ onMarkers }) {
               rgba(255, 255, 255, 0.9) 100%);
             backdrop-filter: blur(20px);
           }
-          
           .chatbox__inputWrap {
             display: flex;
             gap: 16px;
             align-items: flex-end;
           }
-          
           .chatbox__input {
             flex: 1;
             resize: none;
@@ -560,22 +524,18 @@ export default function ChatBox({ onMarkers }) {
             backdrop-filter: blur(10px);
             box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
           }
-          
           .chatbox__input:focus {
             border-color: rgba(102, 126, 234, 0.4);
             box-shadow: 0 4px 20px rgba(102, 126, 234, 0.15);
           }
-          
           .chatbox__input:disabled {
             opacity: 0.6;
             cursor: not-allowed;
           }
-          
           .chatbox__input::placeholder {
             color: #9ca3af;
             font-weight: 500;
           }
-          
           .spinner {
             width: 18px;
             height: 18px;
@@ -584,19 +544,15 @@ export default function ChatBox({ onMarkers }) {
             border-radius: 50%;
             animation: spin 1s linear infinite;
           }
-          
           @keyframes spin {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
           }
-          
           .msg__stream {
             color: #667eea;
             font-style: italic;
             opacity: 0.8;
           }
-          
-          /* Mobile responsiveness */
           @media (max-width: 480px) {
             .chatbox {
               bottom: 16px;
@@ -605,74 +561,60 @@ export default function ChatBox({ onMarkers }) {
               max-width: none;
               min-width: auto;
             }
-            
             .chatbox--expanded {
               height: 70vh;
             }
-            
             .chatbox__header {
               padding: 20px 20px 16px;
             }
-            
             .chatbox__body {
               padding: 20px;
             }
-            
             .chatbox__footer {
               padding: 20px;
             }
-            
             .msg__content {
               max-width: 75%;
             }
           }
-          
-          /* Dark mode support */
           @media (prefers-color-scheme: dark) {
             .chatbox {
               background: rgba(17, 24, 39, 0.95);
               border-color: rgba(75, 85, 99, 0.3);
             }
-            
             .chatbox__body {
               background: linear-gradient(to bottom, 
                 rgba(17, 24, 39, 0.8) 0%,
                 rgba(31, 41, 55, 0.9) 100%);
             }
-            
             .chatbox__footer {
               background: linear-gradient(to top, 
                 rgba(17, 24, 39, 0.95) 0%,
                 rgba(31, 41, 55, 0.9) 100%);
             }
-            
             .chatbox__emptyTitle {
               color: #f9fafb;
             }
-            
             .chatbox__emptySub {
               color: #9ca3af;
             }
-            
             .msg--ai .msg__bubble {
               background: rgba(31, 41, 55, 0.9);
               color: #f9fafb;
               border-color: rgba(102, 126, 234, 0.3);
             }
-            
             .chatbox__input {
               background: rgba(31, 41, 55, 0.9);
               color: #f9fafb;
               border-color: rgba(102, 126, 234, 0.3);
             }
-            
             .chatbox__input::placeholder {
               color: #6b7280;
             }
           }
         `}
       </style>
-      
+
       <section className={`chatbox ${expanded ? 'chatbox--expanded' : 'chatbox--collapsed'}`}>
         {/* Header */}
         <header className="chatbox__header">
@@ -702,7 +644,12 @@ export default function ChatBox({ onMarkers }) {
 
         {/* Body */}
         {expanded ? (
-          <main className="chatbox__body" ref={bodyRef}>
+          <main
+            className="chatbox__body"
+            ref={bodyRef}
+            onWheel={handleWheel}
+            onTouchMove={handleTouchMove}
+          >
             {conversation.length === 0 && !answer ? (
               <div className="chatbox__empty">
                 <div className="chatbox__emptyIcon">🗺️</div>

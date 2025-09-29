@@ -1,0 +1,129 @@
+/* RoleGate.theme.css
+   Palette: Primary (Blue → Indigo), Secondary (Teal → Cyan)
+   Goals:
+   - Remove clashing purple (#7c3aed) with a calmer indigo (#6366F1)
+   - Improve text and border contrast on dark surfaces
+   - Keep accents consistent across gradients, blobs, rings, and hovers
+*/
+
+/* Tokens */
+.role-gate {
+  /* Dark background gradient (deeper, less noisy) */
+  --bg-1: #0a0f1c;       /* slightly cooler/darker than before */
+  --bg-2: #0b1220;
+
+  /* Glass panel with better contrast */
+  --panel: rgba(13, 18, 28, 0.72);
+  --panel-border: rgba(148, 163, 184, 0.16); /* slate-300 @ ~16% */
+  --panel-shadow: 0 20px 50px rgba(0, 0, 0, 0.50);
+
+  /* Typography */
+  --text: #e9edf3;   /* a touch brighter than #e5e7eb */
+  --muted: #9fb0c4;  /* cooler grey-blue for better harmony */
+
+  /* Focus ring uses primary accent */
+  --ring: rgba(59, 130, 246, 0.45); /* blue-500 @45% */
+
+  /* Primary accent: blue → indigo (no purple) */
+  --blue-1: #3b82f6;  /* blue-500 */
+  --blue-2: #6366f1;  /* indigo-500 (replaces #7c3aed) */
+
+  /* Secondary accent: teal → cyan */
+  --teal-1: #14b8a6;  /* teal-500 */
+  --teal-2: #22d3ee;  /* cyan-400 */
+
+  /* Radii and motion remain unchanged */
+  --radius-lg: 18px;
+  --radius-md: 14px;
+  --radius-sm: 10px;
+
+  --dur-fast: 160ms;
+  --dur-mid: 260ms;
+  --easing: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Brand mark gradient (use primary accent pair consistently) */
+.role-gate .brand-mark {
+  background: linear-gradient(135deg, var(--blue-1) 0%, var(--blue-2) 100%) !important;
+  box-shadow: 0 10px 26px color-mix(in oklab, var(--blue-2), transparent 65%);
+}
+
+/* Blob colors (replace purple with indigo; harmonize cyan) */
+.role-gate .blob--a { background: var(--blue-1) !important; }
+.role-gate .blob--b { background: var(--blue-2) !important; } /* replaces #9333ea */
+.role-gate .blob--c { background: var(--teal-2) !important; }
+
+/* Subtle grain: slightly reduced so accents read cleaner */
+.role-gate .grain { opacity: 0.06 !important; }
+
+/* Panel border and background tune-up for contrast */
+.role-gate .gate-panel {
+  background: var(--panel) !important;
+  border-color: var(--panel-border) !important;
+  box-shadow: var(--panel-shadow) !important;
+}
+
+/* Cards: unify icon backplates and hover accents */
+.role-gate .card,
+.role-gate .role-card {
+  background: rgba(255, 255, 255, 0.04) !important;
+  border-color: var(--panel-border) !important;
+  color: var(--text) !important;
+}
+
+.role-gate .card-icon,
+.role-gate .role-icon {
+  background: linear-gradient(135deg, rgba(255,255,255,0.07), rgba(255,255,255,0.03)) !important;
+  border-color: var(--panel-border) !important;
+}
+
+/* Primary (blue/indigo) variant */
+.role-gate .card--blue:hover,
+.role-gate .role-card:hover:not(.role-card--accent) {
+  border-color: color-mix(in oklab, var(--blue-1), white 20%);
+  box-shadow: 0 14px 28px color-mix(in oklab, var(--blue-1), transparent 80%);
+}
+
+/* Secondary (teal/cyan) variant */
+.role-gate .card--teal:hover,
+.role-gate .role-card.role-card--accent:hover {
+  border-color: color-mix(in oklab, var(--teal-1), white 20%);
+  box-shadow: 0 14px 28px color-mix(in oklab, var(--teal-1), transparent 80%);
+}
+
+/* CTA arrow hover uses primary accent for consistency */
+.role-gate .card:hover .arrow,
+.role-gate .role-card:hover .role-cta {
+  color: var(--blue-1) !important;
+}
+
+/* Muted text harmonized */
+.role-gate .brand-tagline,
+.role-gate .gate-subtitle,
+.role-gate .role-info p,
+.role-gate .card-text,
+.role-gate .footer-note {
+  color: var(--muted) !important;
+}
+
+/* Optional: improve dashed border visibility slightly */
+.role-gate .footer-note {
+  border-color: color-mix(in oklab, var(--panel-border), white 10%) !important;
+}
+
+/* Fallback for browsers without color-mix support */
+@supports not (color-mix(in oklab, white, black)) {
+  .role-gate .brand-mark {
+    box-shadow: 0 10px 26px rgba(99, 102, 241, 0.35);
+  }
+  .role-gate .card--blue:hover,
+  .role-gate .role-card:hover:not(.role-card--accent) {
+    border-color: rgba(59, 130, 246, 0.55);
+    box-shadow: 0 14px 28px rgba(59, 130, 246, 0.18);
+  }
+  .role-gate .card--teal:hover,
+  .role-gate .role-card.role-card--accent:hover {
+    border-color: rgba(20, 184, 166, 0.55);
+    box-shadow: 0 14px 28px rgba(20, 184, 166, 0.18);
+  }
+}
