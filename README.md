@@ -12,7 +12,7 @@ It integrates **NASA EarthData** (LST, NDVI), **WorldPop** (population density),
 > Web Application Demo Image
 ![CityPath Desktop Demo](/Resource/Image/Web.png)  
 
-> Web Application Demo Image
+> Mobile Application Demo Image
 ![CityPath Mobile Demo](/Resource/Image/Mobile.png)
 
 ---
