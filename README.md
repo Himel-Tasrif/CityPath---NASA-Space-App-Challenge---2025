@@ -127,7 +127,7 @@ Frontend will be available at: [http://localhost:5173/](http://localhost:5173/)
   Used via `appeears_fetch.py` to download MODIS LST (MOD11A2) and NDVI (MOD13Q1).
 
 - **WorldPop Population Density (1km)**  
-  [hub.worldpop.org/geodata/](https://hub.worldpop.org/geodata/)  
+  [hub.worldpop.org/geodata/](https://hub.worldpop.org/geodata/summary?id=40150)  
   Example: `bgd_pd_2020_1km.tif` for Dhaka.
 
 ---
