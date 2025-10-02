@@ -197,9 +197,9 @@ Frontend will be available at: [http://localhost:5173/](http://localhost:5173/)
 ## Contact
 
 **Team Leader:** Tasrif Nur Himel
-📧 Email: himel35-1078@diu.edu.bd  
-🌐 [Portfolio](https://www.tasrifnurhimel.me/)
-ℹ️ [LinkedIn](https://linkedin.com/in/tasrifnurhimel)
+📧 - Email: himel35-1078@diu.edu.bd  
+🌐 - [Portfolio](https://www.tasrifnurhimel.me/)
+ℹ️ - [LinkedIn](https://linkedin.com/in/tasrifnurhimel)
 
 ---
 
