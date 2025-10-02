@@ -25,7 +25,6 @@ It integrates **NASA EarthData** (LST, NDVI), **WorldPop** (population density),
 - **Data Sources:**
   - NASA AppEEARS API → MODIS LST (MOD11A2), NDVI (MOD13Q1)
   - WorldPop → Population density (1km resolution)
-  - Nighttime Lights (VIIRS) → Urban growth & energy analysis
   - NASA GIBS overlays → Visualization layers
 
 ---
@@ -93,7 +92,8 @@ pip install -r requirements.txt
 Create a `.env` file in the `backend/` directory with these variables:
 
 ```env
-OPENAI_API_KEY=your_api_key_here
+OPENAI_API_KEY= Your OpenAI API Key
+EARTHDATA_TOKEN= Your Earthdata Token
 CITY_NAME=Dhaka
 CITY_CENTER_LAT=23.8103
 CITY_CENTER_LON=90.4125
