@@ -11,8 +11,8 @@ It integrates **NASA EarthData** (LST, NDVI), **WorldPop** (population density),
 
 > Replace these with your own screenshots.
 
-![CityPath Desktop Demo](docs/images/demo_desktop.png)  
-![CityPath Mobile Demo](docs/images/demo_mobile.png)
+![CityPath Desktop Demo](/Resource/Image/Web.png)  
+![CityPath Mobile Demo](/Resource/Image/Mobile.png)
 
 ---
 
@@ -143,7 +143,7 @@ Frontend will be available at: [http://localhost:5173/](http://localhost:5173/)
 
 ## 📱 Downloads
 
-- 📥 [Mobile APK Download](docs/downloads/CityPath.apk) (placeholder)
+- 📥 [Mobile APK Download](/App%20File/app-release.apk) (placeholder)
 - 📄 [Documentation PDF](docs/CityPath_Documentation.pdf) (placeholder)
 - 🎥 [Demo Video](docs/video/demo.mp4) (placeholder)
 
