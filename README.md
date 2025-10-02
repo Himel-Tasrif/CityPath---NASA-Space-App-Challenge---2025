@@ -121,8 +121,8 @@ This script:
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/YourUser/CityPath.git
-cd CityPath
+git clone https://github.com/Himel-Tasrif/CityPath---NASA-Space-App-Challenge---2025.git
+cd CityPath---NASA-Space-App-Challenge---2025
 ```
 
 ### 2. Backend Setup (FastAPI + Python)
