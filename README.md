@@ -70,6 +70,50 @@ CityPath/
 └── README.md
 ```
 
+
+---
+
+## ⚙️ Data Workflow
+
+### 1. Download NASA EarthData (AppEEARS)
+We use **NASA AppEEARS API** to fetch MODIS products:  
+- **MOD11A2** → Land Surface Temperature (LST)  
+- **MOD13Q1** → Vegetation Index (NDVI)  
+
+Run:
+```bash
+cd backend/scripts
+python appeears_fetch.py
+```
+This script downloads `.tif` rasters into:
+
+    backend/app/data/rasters/
+
+---
+
+### 2. Add Population Data
+
+We use WorldPop 1km population density.  
+Example: `bgd_pd_2020_1km.tif` for Dhaka, Bangladesh.  
+Place it manually into:
+
+    backend/app/data/rasters/
+
+---
+
+### 3. Build Hex Metrics Table
+
+After rasters are ready, run:
+```bash
+python build_hex_metrics.py
+```
+This script:
+- Converts rasters to a common grid
+- Samples values into H3 hexagons (resolution 9 ≈ 460m edge)
+- Creates a `hex_features_ext.parquet` file in:
+
+      backend/app/data/
+
 ---
 
 ## ⚙️ Setup Instructions
