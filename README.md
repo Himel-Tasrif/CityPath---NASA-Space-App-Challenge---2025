@@ -186,10 +186,13 @@ Frontend will be available at: [http://localhost:5173/](http://localhost:5173/)
 
 ---
 
-## 📱 Downloads
-
+## 📱 Mobile APP
 - [Mobile APK Download](/App%20File/app-release.apk)
+
+## 🎥 Documentation
 - [Documentation PDF](docs/CityPath_Documentation.pdf)
+
+## 📄Video
 - [Demo Video](docs/video/demo.mp4)
 
 ---
