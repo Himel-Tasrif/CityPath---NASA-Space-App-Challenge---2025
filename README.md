@@ -3,7 +3,7 @@
 # 🌍 CityPath – AI-Powered Urban Planning Tool
 
 CityPath is an AI-assisted geospatial analytics tool built for the **NASA Space Apps Challenge**.  
-It integrates **NASA EarthData** (LST, NDVI), **WorldPop** (population density), and other datasets into a **hexagonal grid (H3)** to empower **urban planners** in identifying priority intervention areas for **parks, clinics, housing, agriculture, and energy access**.
+It integrates **NASA EarthData** (LST, NDVI), **WorldPop** (population density), and other datasets into a **hexagonal grid (H3)** to empower **urban planners** in identifying priority intervention areas for **parks, clinics**.
 
 ---
 
@@ -188,21 +188,21 @@ Frontend will be available at: [http://localhost:5173/](http://localhost:5173/)
 
 ## 📱 Downloads
 
-- 📥 [Mobile APK Download](/App%20File/app-release.apk) (placeholder)
-- 📄 [Documentation PDF](docs/CityPath_Documentation.pdf) (placeholder)
-- 🎥 [Demo Video](docs/video/demo.mp4) (placeholder)
+- [Mobile APK Download](/App%20File/app-release.apk)
+- [Documentation PDF](docs/CityPath_Documentation.pdf)
+- [Demo Video](docs/video/demo.mp4)
 
 ---
 
-## 📞 Contact
+## Contact
 
-**Developer:** Tasrif Nur Himel  
-📧 Email: tasrif.h@corsult.com  
-🌐 [LinkedIn](https://linkedin.com/in/tasrifnurhimel)
-
+**Team Leader:** Tasrif Nur Himel
+📧 Email: himel35-1078@diu.edu.bd  
+🌐 [Portfolio](https://www.tasrifnurhimel.me/)
+ℹ️ [LinkedIn](https://linkedin.com/in/tasrifnurhimel)
 ---
 
-## 🚀 CityPath – Empowering urban planners with AI & NASA Earth Data
+## CityPath – Empowering urban planners with AI & NASA Earth Data
 
 ---
 
@@ -219,4 +219,4 @@ Frontend will be available at: [http://localhost:5173/](http://localhost:5173/)
 
 ---
 
-> **Replace demo images, video, and download links with your actual files as you finalize your project.**
+>
