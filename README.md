@@ -5,6 +5,8 @@
 CityPath is an AI-assisted geospatial analytics tool built for the **NASA Space Apps Challenge**.  
 It integrates **NASA EarthData** (LST, NDVI), **WorldPop** (population density), and other datasets into a **hexagonal grid (H3)** to empower **urban planners** in identifying priority intervention areas for **parks, clinics**.
 
+> **🌐 For a live test, please visit:**  
+> [https://city-builder.phigalaxy.com/](https://city-builder.phigalaxy.com/)
 ---
 
 ## 📸 Demo Images
