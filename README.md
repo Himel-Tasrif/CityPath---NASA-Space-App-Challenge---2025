@@ -129,12 +129,6 @@ Frontend will be available at: [http://localhost:5173/](http://localhost:5173/)
   [hub.worldpop.org/geodata/](https://hub.worldpop.org/geodata/)  
   Example: `bgd_pd_2020_1km.tif` for Dhaka.
 
-- **Nighttime Lights (VIIRS)**  
-  [eogdata.mines.edu/products/vnl/](https://eogdata.mines.edu/products/vnl/)
-
-- **Chlorophyll (MODIS Aqua)**  
-  Water quality proxy for coastal regions.
-
 ---
 
 ## 🧠 Recommendation Logic
