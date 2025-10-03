@@ -192,10 +192,10 @@ Frontend will be available at: [http://localhost:5173/](http://localhost:5173/)
 - [Mobile APK Download](/App%20File/app-release.apk)
 
 ## 🎥 Documentation
-- [Documentation PDF](docs/CityPath_Documentation.pdf)
+- [Documentation PDF](https://drive.google.com/file/d/1x5imOmEQ1CplCIJYO-vvjHju-BbsX_Bb/view?usp=drivesdk)
 
 ## 📄Video
-- [Demo Video](docs/video/demo.mp4)
+- [Demo Video](https://www.youtube.com/watch?v=ks9VjJWpqGA)
 
 ---
 
