@@ -11,7 +11,7 @@ It integrates **NASA EarthData** (LST, NDVI), **WorldPop** (population density),
 
 ## Our Team
 > **Team Laniakea**
-> [https://city-builder.phigalaxy.com/](https://city-builder.phigalaxy.com/)
+ ![Team Photo](/Resource/Image/team.jpeg)
 - Tasrif Nur Himel – Team Leader & AI Engineer
 
 - Nusrat Farzana Choudhury – Researcher
