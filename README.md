@@ -9,6 +9,19 @@ It integrates **NASA EarthData** (LST, NDVI), **WorldPop** (population density),
 > [https://city-builder.phigalaxy.com/](https://city-builder.phigalaxy.com/)
 ---
 
+## Our Team
+> **Team Laniakea**
+> [https://city-builder.phigalaxy.com/](https://city-builder.phigalaxy.com/)
+- Tasrif Nur Himel – Team Leader & AI Engineer
+
+- Nusrat Farzana Choudhury – Researcher
+
+- Kazi Md. Tofayel Ahmed – App Developer
+
+- Pronway Prosoon Mitra – Graphics Designer & Video Editor
+
+- Ratul Islam – Web Developer
+---
 ## 📸 Demo Images
 
 > Web Application Demo Image
